@@ -10,7 +10,9 @@ public class PlayerControlleer : MonoBehaviour
    private InputAction moveAction;
    private InputAction jumpAction;
 
-   private Vector2 moveVector;
+   private Vector2 moveInput;
+   [SerializeField] private LayerMask groundLayer;
+   [SerializeField] private float groundCheckDistance = 1f;
 
    // COMPONENTS
    [SerializeField] private Rigidbody rb; 
@@ -36,16 +38,16 @@ public class PlayerControlleer : MonoBehaviour
 
    private void OnDisable()
    {
-      InputActions.FindAction("Player").Disable();
+      InputActions.FindAction("Player")?.Disable();
    }
 
    private void Update() 
    {
-      moveVector = moveAction.ReadValue<UnityEngine.Vector2>(); 
+      moveInput = moveAction.ReadValue<UnityEngine.Vector2>(); 
 
       if (jumpAction.WasPressedThisFrame())
       {
-         
+         HandleJump();
       }
    }
 
@@ -65,8 +67,18 @@ public class PlayerControlleer : MonoBehaviour
 
    private void HandleJump()
    {
-     Debug.Log("Jump My Bones!"); 
+      if (IsGrounded())
+      {
+        rb.AddForce(UnityEngine.Vector3.up * jumpForce, ForceMode.Impulse);
+      }
    }
+
+
+  private bool IsGrounded()
+  {
+    return Physics.Raycast(transform.position, UnityEngine.Vector3.down, groundCheckDistance, groundLayer);
+  }
+
 }
 
 
