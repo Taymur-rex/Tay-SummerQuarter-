@@ -3895,7 +3895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8613175433334832619
 Transform:
   m_ObjectHideFlags: 0
@@ -4495,8 +4495,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8733954918319966234}
   - component: {fileID: 1186319450456974781}
+  - component: {fileID: 8883270355152706602}
+  - component: {fileID: 8236276260035956342}
+  - component: {fileID: 1292421845823119492}
   m_Layer: 0
-  m_Name: Armour_6
+  m_Name: SWORD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4580,6 +4583,67 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.62547195, y: 0.1466035, z: 0.29047894}
     m_Extent: {x: 0.4558107, y: 0.22594306, z: 0.38311678}
   m_DirtyAABB: 0
+--- !u!65 &8883270355152706602
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189206662537026529}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.61, y: 0.66, z: 0.26}
+  m_Center: {x: 0.6510625, y: 0.82322145, z: -0.19597998}
+--- !u!114 &8236276260035956342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189206662537026529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af074f04b6ccc47ed9f388237598616c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySword
+  damage: 5
+--- !u!54 &1292421845823119492
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189206662537026529}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5238028654597444988
 GameObject:
   m_ObjectHideFlags: 0
@@ -5947,6 +6011,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   target: {fileID: 0}
   agent: {fileID: 3130575082193716049}
+  animator: {fileID: 4674187081637780793}
+  sword: {fileID: 8236276260035956342}
+  attackRange: 2
+  attackCooldown: 1.5
+  rotationSpeed: 10
 --- !u!195 &3130575082193716049
 NavMeshAgent:
   m_ObjectHideFlags: 0

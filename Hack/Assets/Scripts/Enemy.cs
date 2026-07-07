@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Animator animator;
+    [SerializeField] private EnemySword sword;
 
     [Header("Combat")]
     [SerializeField] private float attackRange = 2f;
@@ -105,5 +106,15 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log($"{gameObject.name} hit {collision.gameObject.name}");
         }
+    }
+
+    public void EnableSwordHitbox()
+    {
+        sword.EnableHitbox();
+    }
+
+    public void DisableSwordHitbox()
+    {
+        sword.DisableHitbox();
     }
 }
