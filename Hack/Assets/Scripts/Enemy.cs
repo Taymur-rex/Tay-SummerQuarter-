@@ -17,6 +17,11 @@ public class Enemy : MonoBehaviour
     private float nextAttackTime;
     private bool isAttacking;
 
+    public void Initialize(Transform player)
+    {
+        target = player;
+    }
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
