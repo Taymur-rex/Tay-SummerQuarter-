@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     // Stores the one (and only) instance of this script
     public static GameManager Instance {get; private set;}
+    [SerializeField] public static bool isGameOver = false;
 
     private void Awake()
     {
@@ -28,6 +29,20 @@ public class GameManager : MonoBehaviour
 
         // Load the scene at build index 0
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadMainMenu()
+    {
+        // Play UI Audio
+        // Load the Main Menu Scene
+        SceneManager.LoadScene(0);
+    }
+
+    public void LoadCurrentScene()
+    {
+        // Play UI Audio
+        // Restarts the currently active scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

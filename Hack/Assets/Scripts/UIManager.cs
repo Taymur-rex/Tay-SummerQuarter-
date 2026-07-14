@@ -6,7 +6,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance {get; private set;}
 
-[SerializeField] private TextMeshProUGUI scoreText; 
+  [SerializeField] private TextMeshProUGUI scoreText; 
+  [SerializeField] private GameObject gameOverPanel;
  
     private void Awake()
     {
@@ -19,11 +20,17 @@ public class UIManager : MonoBehaviour
       {
         Destroy(gameObject);
       }
-    
+     ToggleGameOverUI(false);
+ 
     }
 
     public void UpdateScore(int score)
     {
       scoreText.text = $"Score:{score} ";
+    }
+
+    public void ToggleGameOverUI(bool flag)
+    {
+      gameOverPanel.SetActive(flag);
     }
 }
