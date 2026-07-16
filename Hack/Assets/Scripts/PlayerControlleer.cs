@@ -8,7 +8,8 @@ public class PlayerControlleer : MonoBehaviour
 
     // ACTIONS
     private InputAction moveAction;
-    private InputAction jumpAction;
+    //private InputAction jumpAction;
+    private InputAction shootAction;
 
     private Vector2 moveInput;
 
@@ -21,16 +22,24 @@ public class PlayerControlleer : MonoBehaviour
 
     // COMPONENTS
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform gunBarrel;
+    [SerializeField] private Transform bulletsParent;
 
     // PLAYER SETTINGS
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpForce = 5f;
+    //[SerializeField] private float jumpForce = 5f;
+
+    [SerializeField] private float fireRate = 5f; // shots per second
+
+      private float nextFireTime;
 
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
-        jumpAction = InputSystem.actions.FindAction("Jump");
-
+        //jumpAction = InputSystem.actions.FindAction("Jump");
+        shootAction = InputSystem.actions.FindAction("Shoot");
+      
         rb = GetComponent<Rigidbody>();
     }
 
@@ -50,9 +59,14 @@ public class PlayerControlleer : MonoBehaviour
 
         HandleRotation();
 
-        if (jumpAction.WasPressedThisFrame())
+        /*if (jumpAction.WasPressedThisFrame())
         {
             HandleJump();
+        }*/
+
+        if (shootAction.IsPressed())
+        {
+            HandleShooting();
         }
     }
 
@@ -61,15 +75,28 @@ public class PlayerControlleer : MonoBehaviour
         HandleMovement();
     }
 
-    private void HandleMovement()
+    private void HandleShooting()
     {
-        Vector3 moveDirection = transform.forward * moveInput.y +
-                                transform.right * moveInput.x;
+      // Spawn a bullet at the barrel of his gun
+      if (Time.time >= nextFireTime)
+      {
+         nextFireTime = Time.time + (1f / fireRate);
 
-        moveDirection.Normalize();
-
-        rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.deltaTime);
+         // Spawn bullet here
+         Instantiate(bulletPrefab, gunBarrel.position, gunBarrel.rotation, bulletsParent);
+      }
     }
+
+    private void HandleMovement()
+{
+    // Move relative to the world, not the player's facing direction.
+    Vector3 moveDirection = Vector3.forward * moveInput.y +
+                            Vector3.right * moveInput.x;
+
+    moveDirection.Normalize();
+
+    rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+}
 
     private void HandleRotation()
     {
@@ -87,13 +114,13 @@ public class PlayerControlleer : MonoBehaviour
         }
     }
 
-    private void HandleJump()
+   /*private void HandleJump()
     {
         if (IsGrounded())
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-    }
+    }*/
 
     private bool IsGrounded()
     {

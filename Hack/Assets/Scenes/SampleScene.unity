@@ -4090,6 +4090,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 039cb910647ef4f87b16f56d7ad87060, type: 2}
+    - target: {fileID: 8077853487658529357, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8274908294740451122, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.7487354
@@ -4131,16 +4135,31 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9217131388316141982, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
+      propertyPath: gunBarrel
+      value: 
+      objectReference: {fileID: 1929777308}
+    - target: {fileID: 9217131388316141982, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 694999235479186102, guid: 91d533d5b3d40491ea299ce9dd62ad23, type: 3}
+    - target: {fileID: 9217131388316141982, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 9217131388316141982, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
+      propertyPath: bulletsParent
+      value: 
+      objectReference: {fileID: 1369042420}
     - target: {fileID: 9217131388316141982, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
       propertyPath: aimLayer.m_Bits
       value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8274908294740451122, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1929777308}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
 --- !u!4 &1240681788 stripped
@@ -4345,6 +4364,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abe3d47b915ca924a9e06dd6d3321396, type: 3}
+--- !u!1 &1369042419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369042420}
+  m_Layer: 0
+  m_Name: Bullet Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369042420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369042419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1372022489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6291,6 +6341,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5412017221204367677, guid: abe3d47b915ca924a9e06dd6d3321396, type: 3}
   m_PrefabInstance: {fileID: 1924433384}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1929777307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1929777308}
+  m_Layer: 0
+  m_Name: Gun Barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1929777308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929777307}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.243, z: 0.441}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1240681788}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1970632566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6946,3 +7027,4 @@ SceneRoots:
   - {fileID: 1010039492}
   - {fileID: 931887760}
   - {fileID: 1240681787}
+  - {fileID: 1369042420}
