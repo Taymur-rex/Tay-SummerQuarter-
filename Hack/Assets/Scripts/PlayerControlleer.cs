@@ -25,6 +25,7 @@ public class PlayerControlleer : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform gunBarrel;
     [SerializeField] private Transform bulletsParent;
+    [SerializeField] private Animator animator;
 
     // PLAYER SETTINGS
     [SerializeField] private float moveSpeed = 5f;
@@ -32,15 +33,18 @@ public class PlayerControlleer : MonoBehaviour
 
     [SerializeField] private float fireRate = 5f; // shots per second
 
-      private float nextFireTime;
+    private float nextFireTime;
+    private bool isDead = false;
 
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
         //jumpAction = InputSystem.actions.FindAction("Jump");
         shootAction = InputSystem.actions.FindAction("Shoot");
+        isDead = false;
       
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -77,6 +81,8 @@ public class PlayerControlleer : MonoBehaviour
 
     private void HandleShooting()
     {
+        if (isDead) return;
+
       // Spawn a bullet at the barrel of his gun
       if (Time.time >= nextFireTime)
       {
@@ -89,6 +95,8 @@ public class PlayerControlleer : MonoBehaviour
 
     private void HandleMovement()
 {
+    if (isDead) return;
+
     // Move relative to the world, not the player's facing direction.
     Vector3 moveDirection = Vector3.forward * moveInput.y +
                             Vector3.right * moveInput.x;
@@ -100,6 +108,8 @@ public class PlayerControlleer : MonoBehaviour
 
     private void HandleRotation()
     {
+        if (isDead) return;
+
         Ray ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, aimLayer))
@@ -125,5 +135,17 @@ public class PlayerControlleer : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+    }
+
+    public void Die()
+    {
+        if (isDead) return;
+
+        isDead = true;
+        Debug.Log("GAME OVER!");
+       // trigger death animation
+      animator.SetTrigger("Death");
+       // stop player movement
+       // trigger game over UI
     }
 }

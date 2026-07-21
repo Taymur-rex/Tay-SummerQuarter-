@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 20f;
     [SerializeField] private float lifetime = 3f;
+    [SerializeField] private int damage = 25;
 
     private void Start()
     {
@@ -20,16 +21,18 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // TODO: Damage enemies here later
-        Enemy enemy = collision.transform.GetComponent<Enemy>();
+        Health1 health = collision.transform.GetComponent<Health1>();
         // Destroy the bullet whenever it hits an enemy
-        if (enemy != null) 
+        if (health != null) 
         {
-            // Destroy this bullet
-            Destroy(gameObject);
+            Debug.Log("Bullet hit enemy");
+            // Deal Damage to the Health
+            health.TakeDamage(damage);
             // Destory the enemy
-            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            // Add POints
+            GameManager.Instance.EarnPoints(10);
         }
-        
-        
+        Debug.Log("Collision Detected");
     }
 }

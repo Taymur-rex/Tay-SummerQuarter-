@@ -925,6 +925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299d1517aba034c0bae2642367af1cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  gameOverDelay: 3
+  score: 0
 --- !u!4 &323742461
 Transform:
   m_ObjectHideFlags: 0
@@ -2402,8 +2404,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4135,6 +4137,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9217131388316141982, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1822037563}
+    - target: {fileID: 9217131388316141982, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
       propertyPath: gunBarrel
       value: 
       objectReference: {fileID: 1929777308}
@@ -5851,6 +5857,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801157391}
   m_CullTransparentMesh: 1
+--- !u!95 &1822037563 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6725456875045813761, guid: 85e7c42ae04f74fe7be90996d55897c1, type: 3}
+  m_PrefabInstance: {fileID: 1240681787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1833119196
 GameObject:
   m_ObjectHideFlags: 0
@@ -7011,6 +7022,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 330585546}
   - {fileID: 323742461}
+  - {fileID: 931887760}
   - {fileID: 410087041}
   - {fileID: 1833119198}
   - {fileID: 832575519}
@@ -7025,6 +7037,5 @@ SceneRoots:
   - {fileID: 860600599}
   - {fileID: 1376378773}
   - {fileID: 1010039492}
-  - {fileID: 931887760}
   - {fileID: 1240681787}
   - {fileID: 1369042420}

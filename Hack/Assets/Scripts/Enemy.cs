@@ -110,6 +110,10 @@ public class Enemy : MonoBehaviour
         if (player != null)
         {
             Debug.Log($"{gameObject.name} hit {collision.gameObject.name}");
+            // trigger the death of the player
+            player.Die();
+            // Trigger a game Over
+            GameManager.Instance.GameOver();
         }
     }
 
