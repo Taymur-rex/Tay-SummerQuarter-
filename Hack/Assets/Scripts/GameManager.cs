@@ -6,9 +6,10 @@ public class GameManager : MonoBehaviour
 {
     // Stores the one (and only) instance of this script
     public static GameManager Instance {get; private set;}
-    [SerializeField] public static bool isGameOver = false;
+    public static bool isGameOver = false;
     [SerializeField] private float gameOverDelay = 2f;
     [SerializeField] private int score = 0;
+
 
     private void Awake()
     {
@@ -26,10 +27,14 @@ public class GameManager : MonoBehaviour
 
         score = 0;
         UIManager.Instance?.UpdateScore(score);
+        isGameOver = false;
     } 
 
     public void GameOver()
     {
+        if (isGameOver) return;
+
+        isGameOver = true;
         StartCoroutine(GameOverRoutine());
     }
 
@@ -52,6 +57,8 @@ public class GameManager : MonoBehaviour
     public void LoadMainMenu()
     {
         // Play UI Audio
+        // Stop Death Audio
+        AudioManager.Instance.StopSound("death");
         // Load the Main Menu Scene
         SceneManager.LoadScene(0);
     }
@@ -59,6 +66,8 @@ public class GameManager : MonoBehaviour
     public void LoadCurrentScene()
     {
         // Play UI Audio
+        // Stop Death Audio
+        AudioManager.Instance.StopSound("death");
         // Restarts the currently active scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

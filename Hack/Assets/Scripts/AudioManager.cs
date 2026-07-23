@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         // Play Main theme music
-        PlaySound("MainTheme");
+        //PlaySound("MainTheme");
     }
 
     public void PlaySound(string name)

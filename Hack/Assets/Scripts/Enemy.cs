@@ -107,8 +107,10 @@ public class Enemy : MonoBehaviour
     {
         PlayerControlleer player = collision.gameObject.GetComponent<PlayerControlleer>();
 
-        if (player != null)
+        if (player != null && GameManager.isGameOver == false)
         {
+            // play audio 
+            AudioManager.Instance.PlaySound("death");
             Debug.Log($"{gameObject.name} hit {collision.gameObject.name}");
             // trigger the death of the player
             player.Die();
